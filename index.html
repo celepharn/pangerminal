@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<title>Panadería Germinal 🍞</title>
+	<!-- Font Awesome 6 (free icons) -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    </head>
+    <body>
+	<main class="card" role="main">
+	    <!-- simple image (dynamic – responsive by nature) -->
+	    <div class="image-wrapper">
+		<img 
+		 src="Germinal.jpg" 
+		 alt="decoration" 
+		 loading="lazy"
+		 decoding="async"
+		 >
+	    </div>
+		<!-- Language toggle button -->
+		<button class="lang-btn" onclick="toggleLanguage()">
+		    <span id="btn-text">🇺🇸 English</span>
+		</button>
+
+  <div class="content">
+      <div class = "message">
+	  <h1><span style="font-family: 'Montserrat'; font-weight: 300; font-size:1.5rem">Panadería   </span><span style="font-family: 'Great Vibes', cursive; font-weight:700; font-size:3rem">Germinal</span></h1>
+      </div>
+      <p id="desc">asd</p>
+  </div>
+  <!-- subtle divider -->
+  <div class="divider" aria-hidden="true"></div>
+
+      <!-- social icons: instagram + whatsapp (with labels) -->
+      <div class="social-row">
+        <a id="whatsapp" class="social-link whatsapp" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://www.instagram.com/pangerminal/" class="social-link instagram" aria-label="Instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+      <!-- optional extra: tiny footer / dynamic hint -->
+      <div class="attribution">
+	  <span>2026 Licencia GPL3.0</span>
+      </div>
+      </div>
+      <script>
+	  const translations = {
+	      es: {
+		  desc: "Hola y bienvenid@, somos una panadería artesanal. Hacemos pan de masa madre.<br>"+
+		  "Abajo encontrarás nuestro link de WhatsApp para hacer pedidos directamente.<br>"+
+		  "También te invitamos a descubrirnos en Instagram, ahí podrás conocer más<br>"+
+		  "sobre nosotros y nuestro pan.",
+		  whatsapp: 'https://wa.me/525530695279?text=¡Hola!%20Quisiera%20hacer%20un%20pedido',
+	      },
+	      en: {
+		  desc: "Hello and welcome, we're an artisan bakery. We bake sourdough bread.<br>"+
+		  "In the WhatsApp link below you can make orders right away!<br>"+
+		  "We also invite you to discover us on Instagram, in there you can learn more about us,<br>"+
+		  "our bread, as well as make orders.<br>",
+		  whatsapp: 'https://wa.me/525530695279?text=Hello!%20I%20want%20to%20place%20an%20order',
+	      }
+	  };
+	  let currentLang = 'es';
+
+      function toggleLanguage() {
+	  // Toggle language
+	  currentLang = currentLang === 'es' ? 'en' : 'es';
+
+	  // Update description - using innerHTML so <br> works
+	  document.getElementById('desc').innerHTML = translations[currentLang].desc;
+
+	  // Update social labels
+	  document.getElementById('whatsapp').href = translations[currentLang].whatsapp;
+
+	  // Update button text
+	  document.getElementById('btn-text').textContent = 
+	      currentLang === 'es' ? '🇺🇸 English' : '🇲🇽 Español';
+
+	  // Update button text
+	  const btnText = document.getElementById('btn-text');
+	  btnText.textContent = currentLang === 'en' ? '🇲🇽 Español' : '🇺🇸 English';
+      }
+
+	  // Load Spanish on page load
+	  document.addEventListener('DOMContentLoaded', function() {
+	      document.getElementById('desc').innerHTML = translations.es.desc;
+	      document.getElementById('whatsapp').href = translations.es.whatsapp;
+	  });
+      </script>
+	</main>
+    </body>
+</html>
