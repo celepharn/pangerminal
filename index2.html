@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <title>Panadería Germinal</title>
+  
+  <style>
+    /* ----- RESET ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #ffffff;  /* White background */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+    }
+    
+    /* Language toggle - TOP CENTER */
+    .lang-btn {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      padding: 10px 24px;
+      background: #f0f0f0;
+      border: 2px solid #333333;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #000000;  /* Black text */
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .lang-btn:hover {
+      background: #e0e0e0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      transform: translateX(-50%) scale(1.03);
+    }
+    
+    .lang-btn i {
+      font-size: 1.2rem;
+      color: #000000;
+    }
+    
+    /* ----- MAIN CARD ----- */
+    .card {
+      max-width: 640px;
+      width: 100%;
+      background: #ffffff;  /* White background */
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem 2.5rem 3rem;
+      margin-top: 40px;
+      text-align: center;
+      border: 2px solid #e0e0e0;
+    }
+    
+    /* ----- IMAGE ----- */
+    .image-wrapper {
+      width: 100%;
+      margin-bottom: 1.8rem;
+      border-radius: 2rem;
+      overflow: hidden;
+      background: #f0f0f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 2px solid #e0e0e0;
+    }
+    
+    .image-wrapper img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: transform 0.25s;
+    }
+    
+    .image-wrapper img:hover {
+      transform: scale(1.01);
+    }
+    
+    /* ----- HEADER ----- */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.8rem;
+      color: #000000;  /* Black text */
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .cursive-name {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: 3.8rem;
+      color: #000000;  /* Black text */
+      display: inline-block;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* ----- DESCRIPTION ----- */
+    #desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #000000;  /* Black text */
+      margin: 1.5rem 0 2rem;
+      text-align: left;
+    }
+    
+    /* ----- DIVIDER ----- */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #000000;  /* Black divider */
+      border-radius: 4px;
+      margin: 1.5rem auto;
+    }
+    
+    /* ----- LINKS GROUP ----- */
+    .links-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem 2rem;
+      margin: 0.25rem 0 0.25rem;
+    }
+    
+    .links-group a {
+      color: #000000;  /* Black text */
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      padding: 0.3rem 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    
+    .links-group a i {
+      font-size: 1.2rem;
+      width: 1.4rem;
+      text-align: center;
+      color: #000000;  /* Black icons */
+      transition: transform 0.2s;
+    }
+    
+    .links-group a:hover {
+      color: #555555;
+      border-bottom-color: #000000;
+      transform: translateY(-1px);
+    }
+    
+    .links-group a:hover i {
+      transform: scale(1.08);
+    }
+    
+    /* ----- SOCIAL ROW ----- */
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 0.4rem;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #000000;  /* Black text */
+      text-decoration: none;
+      padding: 0.6rem 1.4rem;
+      background: #f0f0f0;  /* Light gray background */
+      border-radius: 60px;
+      border: 2px solid #000000;  /* Black border */
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .social-link i {
+      font-size: 1.8rem;
+      color: #000000;  /* Black icons */
+      transition: transform 0.2s;
+    }
+    
+    .social-link:hover {
+      background: #e0e0e0;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+      transform: scale(1.02);
+    }
+    
+    .social-link:hover i {
+      transform: scale(1.04);
+    }
+    
+    /* Instagram & WhatsApp hover colors */
+    .social-link.instagram:hover i {
+      color: #d62976;
+    }
+    .social-link.whatsapp:hover i {
+      color: #25d366;
+    }
+    
+    /* ----- ATTRIBUTION ----- */
+    .attribution {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #000000;  /* Black text */
+      letter-spacing: 0.3px;
+      border-top: 1px solid #000000;
+      padding-top: 1.5rem;
+      width: 100%;
+    }
+    
+    .attribution a {
+      color: #000000;
+      text-decoration: none;
+      border-bottom: 1px dotted #000000;
+    }
+    
+    .attribution a:hover {
+      color: #555555;
+      border-bottom-color: #555555;
+    }
+    
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.5rem;
+        margin-top: 60px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .cursive-name {
+        font-size: 3rem;
+      }
+      
+      #desc {
+        font-size: 1rem;
+      }
+      
+      .lang-btn {
+        top: 12px;
+        padding: 8px 18px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Language Toggle -->
+  <button class="lang-btn" onclick="toggleLanguage()">
+    <i class="fas fa-globe"></i>
+    <span id="btn-text">🇪🇸 English</span>
+  </button>
+  
+  <!-- Main Card -->
+  <div class="card">
+    
+    <!-- Image -->
+    <div class="image-wrapper">
+      <img 
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=450&fit=crop&crop=center&auto=format" 
+        alt="Dynamic landscape – simple image" 
+        loading="lazy"
+        decoding="async"
+      >
+    </div>
+    
+    <!-- Header -->
+    <h1>
+      Panadería 
+      <span class="cursive-name">Germinal</span>
+    </h1>
+    
+    <!-- Description -->
+    <p id="desc"></p>
+    
+    <!-- Divider -->
+    <div class="divider" aria-hidden="true"></div>
+    
+    <!-- Navigation Links -->
+    <div class="links-group">
+      <a href="#"><i class="fas fa-globe"></i> Home</a>
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="#"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+    
+    <!-- Social Links -->
+    <div class="social-row">
+      <a href="#" class="social-link instagram" aria-label="Instagram">
+        <i class="fab fa-instagram"></i> 
+        <span id="ig-label">Instagram</span>
+      </a>
+      <a id="whatsapp" class="social-link whatsapp" aria-label="WhatsApp" target="_blank">
+        <i class="fab fa-whatsapp"></i> 
+        <span id="wa-label">WhatsApp</span>
+      </a>
+    </div>
+    
+    <!-- Footer -->
+    <div class="attribution">
+      <span id="footer-text">✨ Panadería artesanal · desde 1920</span>
+    </div>
+  </div>
+  
+  <script>
+    const translations = {
+      es: {
+        desc: "Somos una panadería completamente artesanal. Hacemos pan de masa madre.<br>" +
+             "Te invitamos a descubrir más información en nuestra página de Instagram<br>" +
+             "así como hacer pedidos.<br>" +
+             "O si prefieres puedes hacerlo directamente usando el link de WhatsApp.",
+        instagram: 'Instagram',
+        whatsapp: 'WhatsApp',
+        footer: '✨ Panadería artesanal · desde 1920',
+        whatsapp_link: 'https://wa.me/1234567890?text=Hola!%20Quiero%20hacer%20un%20pedido'
+      },
+      en: {
+        desc: "Hello and welcome, we're an artisan bakery. We bake sourdough bread.<br>" +
+             "We invite you to discover us on Instagram, where you can learn more about us,<br>" +
+             "our bread, and make orders.<br>" +
+             "You could also do it directly via the WhatsApp link.",
+        instagram: 'Instagram',
+        whatsapp: 'WhatsApp',
+        footer: '✨ Artisan bakery · since 1920',
+        whatsapp_link: 'https://wa.me/1234567890?text=Hello!%20I%20want%20to%20place%20an%20order'
+      }
+    };
+    
+    let currentLang = 'es';
+    
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      
+      document.getElementById('desc').innerHTML = translations[currentLang].desc;
+      document.getElementById('ig-label').textContent = translations[currentLang].instagram;
+      document.getElementById('wa-label').textContent = translations[currentLang].whatsapp;
+      document.getElementById('footer-text').textContent = translations[currentLang].footer;
+      document.getElementById('whatsapp').href = translations[currentLang].whatsapp_link;
+      
+      document.getElementById('btn-text').textContent = 
+        currentLang === 'es' ? '🇪🇸 English' : '🇬🇧 Español';
+    }
+    
+    // Load default (Spanish) on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('desc').innerHTML = translations.es.desc;
+      document.getElementById('ig-label').textContent = translations.es.instagram;
+      document.getElementById('wa-label').textContent = translations.es.whatsapp;
+      document.getElementById('footer-text').textContent = translations.es.footer;
+      document.getElementById('whatsapp').href = translations.es.whatsapp_link;
+    });
+  </script>
+  
+</body>
+</html>
